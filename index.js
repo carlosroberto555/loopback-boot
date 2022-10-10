@@ -146,12 +146,12 @@ var utils = require('./lib/utils');
  * @header boot(app, [options], [callback])
  */
 
-exports = module.exports = function bootLoopBackApp(app, options, callback) {
+exports = module.exports = async function bootLoopBackApp(app, options, callback) {
   // backwards compatibility with loopback's app.boot
   options.env = options.env || app.get('env');
 
-  var instructions = compile(options);
-  execute(app, instructions, callback);
+  var instructions = await compile(options);
+  await execute(app, instructions, callback);
 };
 
 /**
